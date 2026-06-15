@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme (default :root) */
+  :root {
+    --bg: 246 247 251;
+    --surface: 255 255 255;
+    --surface-2: 240 242 248;
+    --line: 222 225 235;
+    --ink: 15 16 26;
+    --muted: 92 96 115;
+    --primary: 109 40 217; /* violet-700 */
+    --secondary: 8 145 178; /* cyan-600 */
+    --accent: 192 38 211; /* fuchsia-600 */
+  }
+
+  /* Dark theme */
+  .dark {
+    --bg: 7 8 16;
+    --surface: 16 17 29;
+    --surface-2: 23 25 41;
+    --line: 39 41 61;
+    --ink: 236 237 245;
+    --muted: 148 152 174;
+    --primary: 139 92 246; /* violet-500 */
+    --secondary: 34 211 238; /* cyan-400 */
+    --accent: 232 121 249; /* fuchsia-400 */
+  }
+
+  * {
+    border-color: rgb(var(--line));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.3);
+    color: rgb(var(--ink));
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--primary) / 0.4);
+    border-radius: 999px;
+    border: 2px solid rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--primary) / 0.7);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface/60 backdrop-blur-xl border border-line/70;
+  }
+  .glass-strong {
+    @apply bg-surface/80 backdrop-blur-2xl border border-line/80;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, rgb(var(--primary)), rgb(var(--secondary)), rgb(var(--accent)));
+    background-size: 200% auto;
+  }
+  .text-gradient-animated {
+    @apply text-gradient animate-gradient-x;
+  }
+
+  /* Spotlight that follows the cursor (set --mx/--my via JS) */
+  .card-spotlight {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      460px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--primary) / 0.16),
+      transparent 42%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .card-spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-medium text-white transition-transform duration-150;
+    background-image: linear-gradient(120deg, rgb(var(--primary)), rgb(var(--accent)));
+    box-shadow: 0 10px 34px -10px rgb(var(--primary) / 0.65);
+  }
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-medium glass transition-colors duration-200 hover:border-primary/50;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line/70 bg-surface/50 px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  .section {
+    @apply relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-20 sm:py-28;
+  }
+}
+
+@layer utilities {
+  .aurora-blob {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+  :root:not(.dark) .aurora-blob {
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+  }
+  .perspective {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgb(var(--line) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.5) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
