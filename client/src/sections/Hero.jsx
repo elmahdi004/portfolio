@@ -3,9 +3,10 @@ import { ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react'
 import { useProfile } from '../hooks/useApi.js'
 import { useTypewriter } from '../hooks/useTypewriter.js'
 import { FALLBACK_PROFILE } from '../lib/fallback.js'
+import { useI18n } from '../lib/i18n.jsx'
 import GradientText from '../components/ui/GradientText.jsx'
 import MagneticButton from '../components/ui/MagneticButton.jsx'
-import GlassCard from '../components/ui/GlassCard.jsx'
+import Hero3D from '../components/three/Hero3D.jsx'
 
 function Social({ icon: Icon, href }) {
   return (
@@ -20,48 +21,10 @@ function Social({ icon: Icon, href }) {
   )
 }
 
-function HeroTerminal({ name, roles }) {
-  const lines = [
-    { p: '$', t: 'whoami' },
-    { o: name, cls: 'text-ink' },
-    { gap: true },
-    { p: '$', t: 'cat roles.txt' },
-    ...roles.map((r) => ({ o: `→ ${r}`, cls: 'text-secondary' })),
-    { gap: true },
-    { p: '$', t: 'security --audit' },
-    { o: '✔ secure by design', cls: 'text-emerald-400' },
-    { o: '✔ automated by default', cls: 'text-emerald-400' },
-    { o: '✔ observable in production', cls: 'text-emerald-400' },
-  ]
-  return (
-    <GlassCard className="overflow-hidden p-0 shadow-glow">
-      <div className="flex items-center gap-2 border-b border-line/60 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-red-400/80" />
-        <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
-        <span className="h-3 w-3 rounded-full bg-green-400/80" />
-        <span className="ml-3 font-mono text-xs text-muted">bellaziz@portfolio: ~</span>
-      </div>
-      <div className="space-y-1 p-5 font-mono text-[13px] leading-relaxed">
-        {lines.map((l, i) =>
-          l.gap ? (
-            <div key={i} className="h-3" />
-          ) : (
-            <div key={i} className={l.cls || 'text-muted'}>
-              {l.p && <span className="text-primary">{l.p} </span>}
-              {l.t || l.o}
-            </div>
-          )
-        )}
-        <div className="text-primary">
-          ${' '}
-          <span className="animate-blink">▌</span>
-        </div>
-      </div>
-    </GlassCard>
-  )
-}
+// The terminal card was replaced by the interactive 3D hero (see Hero3D).
 
 export default function Hero() {
+  const { t } = useI18n()
   const { data } = useProfile()
   const profile = data && data.name ? data : FALLBACK_PROFILE
   const name = profile.name
@@ -76,8 +39,8 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative flex min-h-screen items-center pb-24 pt-32">
-      <div className="section grid items-center gap-12 !py-0 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
+      <div className="section grid min-w-0 items-center gap-10 !py-0 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="min-w-0">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,21 +51,19 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            {profile?.availableForWork === false
-              ? 'Currently focused on a project'
-              : 'Available for new opportunities'}
+            {profile?.availableForWork === false ? t('hero.badgeBusy') : t('hero.badgeAvailable')}
           </motion.span>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+            className="mt-6 text-balance text-3xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Hi, I'm <GradientText animated>{firstName}</GradientText>.
+            {t('hero.greeting')} <GradientText animated>{firstName}</GradientText>.
             <br />
-            I engineer{' '}
-            <span className="whitespace-nowrap">
+            {t('hero.engineer')}{' '}
+            <span className="break-words">
               {typed}
               <span
                 className="ml-0.5 inline-block w-[3px] animate-blink bg-primary align-middle"
@@ -127,14 +88,14 @@ export default function Hero() {
             className="mt-8 flex flex-wrap items-center gap-3"
           >
             <MagneticButton as="a" href="#projects" className="btn-primary">
-              View my work <ArrowUpRight size={18} />
+              {t('hero.viewWork')} <ArrowUpRight size={18} />
             </MagneticButton>
             <MagneticButton as="a" href="#contact" className="btn-ghost">
-              Get in touch
+              {t('hero.getInTouch')}
             </MagneticButton>
             {profile?.resumeUrl && (
               <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-                <Download size={16} /> Resume
+                <Download size={16} /> {t('hero.resume')}
               </a>
             )}
           </motion.div>
@@ -152,12 +113,11 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="animate-float-slow"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <HeroTerminal name={name} roles={roles} />
+          <Hero3D />
         </motion.div>
       </div>
 

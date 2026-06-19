@@ -11,6 +11,7 @@ const EMPTY = {
   company: '',
   location: '',
   type: 'work',
+  period: '',
   startDate: '',
   endDate: '',
   current: false,
@@ -115,6 +116,12 @@ export default function ExperiencesAdmin() {
           <Text label="Location" value={form.location} onChange={(v) => set('location', v)} />
           <Select label="Type" value={form.type} onChange={(v) => set('type', v)} options={TYPES} />
         </div>
+        <Text
+          label="Period — display label (optional, overrides the dates below)"
+          value={form.period}
+          onChange={(v) => set('period', v)}
+          placeholder="e.g. 2025 — Present"
+        />
         <div className="grid grid-cols-2 gap-3">
           <Text label="Start date" type="date" value={form.startDate} onChange={(v) => set('startDate', v)} />
           <Text label="End date" type="date" value={form.endDate} onChange={(v) => set('endDate', v)} />

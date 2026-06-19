@@ -3,19 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MessageSquare, X, Send, Sparkles } from 'lucide-react'
 import api from '../lib/api.js'
 import Spinner from './ui/Spinner.jsx'
-
-const GREETING = {
-  role: 'assistant',
-  content:
-    "Hi! I'm El Mahdi's AI assistant 🤖 — ask me anything about his skills, projects, or experience.",
-}
-
-const SUGGESTIONS = [
-  "What are El Mahdi's top skills?",
-  'Tell me about his DevSecOps work',
-  'Is he available to hire?',
-  'What projects has he built?',
-]
+import { useI18n } from '../lib/i18n.jsx'
 
 function TypingDots() {
   return (
@@ -32,12 +20,15 @@ function TypingDots() {
 }
 
 export default function AIAssistant() {
+  const { t } = useI18n()
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([GREETING])
+  const [messages, setMessages] = useState(() => [{ role: 'assistant', content: t('ai.greeting') }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef(null)
   const inputRef = useRef(null)
+
+  const SUGGESTIONS = [t('ai.s1'), t('ai.s2'), t('ai.s3'), t('ai.s4')]
 
   useEffect(() => {
     const onOpen = () => setOpen(true)
@@ -61,20 +52,13 @@ export default function AIAssistant() {
     setInput('')
     setLoading(true)
     try {
-      // Drop the static greeting so the first message sent is a user turn.
       const payload = next.filter((m, i) => !(i === 0 && m.role === 'assistant'))
       const { data } = await api.post('/assistant', {
         messages: payload.map((m) => ({ role: m.role, content: m.content })),
       })
       setMessages([...next, { role: 'assistant', content: data.reply }])
     } catch {
-      setMessages([
-        ...next,
-        {
-          role: 'assistant',
-          content: "Sorry, I'm having trouble responding right now. Try the contact form below!",
-        },
-      ])
+      setMessages([...next, { role: 'assistant', content: t('ai.error') }])
     } finally {
       setLoading(false)
     }
@@ -84,8 +68,8 @@ export default function AIAssistant() {
     <>
       <motion.button
         onClick={() => setOpen((o) => !o)}
-        aria-label="Open AI assistant"
-        className="fixed bottom-5 right-5 z-[75] grid h-14 w-14 place-items-center rounded-full text-white shadow-glow-lg"
+        aria-label={t('ai.title')}
+        className="fixed bottom-5 end-5 z-[75] grid h-14 w-14 place-items-center rounded-full text-white shadow-glow-lg"
         style={{ backgroundImage: 'linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)))' }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -102,14 +86,14 @@ export default function AIAssistant() {
           </motion.span>
         </AnimatePresence>
         {!open && (
-          <span className="absolute right-0 top-0 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-bg" />
+          <span className="absolute end-0 top-0 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-bg" />
         )}
       </motion.button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed bottom-24 right-5 z-[75] w-[calc(100vw-2.5rem)] max-w-sm"
+            className="fixed bottom-24 end-5 z-[75] w-[calc(100vw-2.5rem)] max-w-sm"
             initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
@@ -124,9 +108,9 @@ export default function AIAssistant() {
                   <Sparkles size={16} />
                 </span>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold">AI Assistant</div>
+                  <div className="text-sm font-semibold">{t('ai.title')}</div>
                   <div className="flex items-center gap-1.5 text-xs text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Ask about El Mahdi
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {t('ai.subtitle')}
                   </div>
                 </div>
                 <button
@@ -164,7 +148,7 @@ export default function AIAssistant() {
                       <button
                         key={s}
                         onClick={() => send(s)}
-                        className="block w-full rounded-xl border border-line/60 bg-surface/40 px-3 py-2 text-left text-xs text-muted transition-colors hover:border-primary/50 hover:text-ink"
+                        className="block w-full rounded-xl border border-line/60 bg-surface/40 px-3 py-2 text-start text-xs text-muted transition-colors hover:border-primary/50 hover:text-ink"
                       >
                         {s}
                       </button>
@@ -184,7 +168,7 @@ export default function AIAssistant() {
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask me anything…"
+                  placeholder={t('ai.placeholder')}
                   className="flex-1 rounded-full border border-line/70 bg-surface/50 px-4 py-2.5 text-sm outline-none placeholder:text-muted focus:border-primary/60"
                 />
                 <button

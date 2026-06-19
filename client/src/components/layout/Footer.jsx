@@ -1,6 +1,7 @@
-import { Github, Linkedin, Mail, ArrowUp, Heart } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
 import { useProfile } from '../../hooks/useApi.js'
 import GradientText from '../ui/GradientText.jsx'
+import { useI18n } from '../../lib/i18n.jsx'
 
 const YEAR = new Date().getFullYear()
 
@@ -19,6 +20,7 @@ function SocialIcon({ href, icon: Icon, label }) {
 }
 
 export default function Footer() {
+  const { t } = useI18n()
   const { data: profile } = useProfile()
   const socials = profile?.socials || {}
   const email = profile?.email || socials.email
@@ -32,8 +34,8 @@ export default function Footer() {
               <GradientText>El Mahdi Bellaziz</GradientText>
             </a>
             <p className="mt-2 max-w-sm text-sm text-muted">
-              {profile?.title || 'DevSecOps Engineer & Full-Stack Developer'} — secure by design,
-              automated by default.
+              {profile?.title || 'DevSecOps Engineer & Full-Stack Developer'}
+              {t('footer.tagline')}
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -49,11 +51,8 @@ export default function Footer() {
             </button>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-line/50 pt-6 text-xs text-muted sm:flex-row">
-          <p>© {YEAR} El Mahdi Bellaziz. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            Built with <Heart size={12} className="text-accent" /> using the MERN stack &amp; Tailwind.
-          </p>
+        <div className="mt-10 flex items-center justify-center border-t border-line/50 pt-6 text-xs text-muted">
+          <p>© {YEAR} El Mahdi Bellaziz. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

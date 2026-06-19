@@ -11,9 +11,9 @@
     --line: 222 225 235;
     --ink: 15 16 26;
     --muted: 92 96 115;
-    --primary: 109 40 217; /* violet-700 */
+    --primary: 5 150 105; /* emerald-600 */
     --secondary: 8 145 178; /* cyan-600 */
-    --accent: 192 38 211; /* fuchsia-600 */
+    --accent: 79 70 229; /* indigo-600 */
   }
 
   /* Dark theme */
@@ -24,9 +24,9 @@
     --line: 39 41 61;
     --ink: 236 237 245;
     --muted: 148 152 174;
-    --primary: 139 92 246; /* violet-500 */
+    --primary: 52 211 153; /* emerald-400 */
     --secondary: 34 211 238; /* cyan-400 */
-    --accent: 232 121 249; /* fuchsia-400 */
+    --accent: 129 140 248; /* indigo-400 */
   }
 
   * {
@@ -36,11 +36,14 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-bg text-ink font-sans antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
   }
 
   ::selection {

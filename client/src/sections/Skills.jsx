@@ -1,15 +1,53 @@
-import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { useMemo, useState } from 'react'
 import { useSkills } from '../hooks/useApi.js'
 import { FALLBACK_SKILLS } from '../lib/fallback.js'
+import { skillLogo, initials } from '../lib/skillIcons.js'
+import { useI18n } from '../lib/i18n.jsx'
 import SectionHeading from '../components/ui/SectionHeading.jsx'
 import GradientText from '../components/ui/GradientText.jsx'
 import GlassCard from '../components/ui/GlassCard.jsx'
 import Reveal from '../components/ui/Reveal.jsx'
 
-const CAT_ORDER = ['Languages', 'Frontend', 'Backend', 'DevOps', 'Security', 'Cloud', 'Other']
+const CAT_ORDER = [
+  'Languages',
+  'Frontend & Mobile',
+  'Backend',
+  'Databases',
+  'DevOps & Cloud',
+  'Security & Tools',
+  'Frontend',
+  'DevOps',
+  'Security',
+  'Cloud',
+  'Other',
+]
+
+function Badge({ skill }) {
+  const logo = skillLogo(skill)
+  const [failed, setFailed] = useState(false)
+  const showLogo = logo && !failed
+  return (
+    <div className="group flex flex-col items-center gap-2" title={skill.name}>
+      <div className="grid h-16 w-16 place-items-center rounded-2xl border border-line/60 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-glow">
+        {showLogo ? (
+          <img
+            src={logo}
+            alt={skill.name}
+            loading="lazy"
+            className="h-9 w-9 object-contain"
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <span className="font-display text-lg font-bold text-slate-700">{initials(skill.name)}</span>
+        )}
+      </div>
+      <span className="w-16 truncate text-center text-[11px] text-muted">{skill.name}</span>
+    </div>
+  )
+}
 
 export default function Skills() {
+  const { t } = useI18n()
   const { data } = useSkills()
   const skills = data?.length ? data : FALLBACK_SKILLS
 
@@ -26,71 +64,28 @@ export default function Skills() {
   return (
     <section id="skills" className="section">
       <SectionHeading
-        eyebrow="Tech stack"
+        eyebrow={t('skills.eyebrow')}
         title={
           <>
-            Tools I <GradientText>build &amp; secure</GradientText> with
+            {t('skills.title1')}
+            <GradientText>{t('skills.titleHl')}</GradientText>
+            {t('skills.title2')}
           </>
         }
-        subtitle="A pragmatic toolbox spanning development, operations and security."
+        subtitle={t('skills.subtitle')}
       />
-
-      {/* scrolling marquee of every skill */}
-      <Reveal
-        className="mt-10 overflow-hidden"
-        // fade the marquee edges
-      >
-        <div
-          style={{
-            maskImage: 'linear-gradient(90deg, transparent, black 7%, black 93%, transparent)',
-          }}
-        >
-          <div className="flex w-max gap-3 animate-marquee">
-            {[...skills, ...skills].map((s, i) => (
-              <span
-                key={i}
-                className="chip whitespace-nowrap !text-sm"
-                style={{ borderColor: s.color ? `${s.color}55` : undefined }}
-              >
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ background: s.color || 'rgb(var(--primary))' }}
-                />
-                {s.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </Reveal>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {grouped.map(([cat, list], gi) => (
           <Reveal key={cat} delay={gi * 0.05}>
             <GlassCard className="h-full p-6">
-              <div className="flex items-center justify-between">
+              <div className="mb-5 flex items-center justify-between">
                 <h3 className="font-display text-lg font-semibold">{cat}</h3>
                 <span className="chip !py-0.5 !text-[11px]">{list.length}</span>
               </div>
-              <div className="mt-5 space-y-4">
+              <div className="grid grid-cols-3 gap-x-3 gap-y-5 sm:grid-cols-4">
                 {list.map((s) => (
-                  <div key={s.name}>
-                    <div className="mb-1.5 flex items-center justify-between text-sm">
-                      <span className="font-medium">{s.name}</span>
-                      <span className="text-xs text-muted">{s.level}%</span>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{
-                          background: `linear-gradient(90deg, ${s.color || 'rgb(var(--primary))'}, rgb(var(--accent)))`,
-                        }}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${s.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: 'easeOut' }}
-                      />
-                    </div>
-                  </div>
+                  <Badge key={s.name} skill={s} />
                 ))}
               </div>
             </GlassCard>

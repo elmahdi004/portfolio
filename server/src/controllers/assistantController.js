@@ -14,9 +14,37 @@ function fmtDate(d) {
   return `${dt.toLocaleString('en', { month: 'short' })} ${dt.getFullYear()}`
 }
 
+// Real CV-based context used when the database isn't connected, so the
+// assistant still answers with grounded facts about El Mahdi.
+const STATIC_CONTEXT = {
+  profile: {
+    name: 'El Mahdi Bellaziz',
+    title: 'Cybersecurity & Full-Stack Engineer',
+    location: 'Safi, Morocco',
+    email: 'elmahdibellaziz@gmail.com',
+    availableForWork: true,
+    bio: "El Mahdi is a cybersecurity engineering student and vulnerability-research engineer in Safi, Morocco. On contract he generates OSS-fuzz-style vulnerable code repositories plus correct, validated patches to train and evaluate frontier AI code-repair models (C, C++, Python, Assembly), and builds full-stack web & mobile apps with Laravel, Vue/Nuxt, React and Flutter. CCNA 1–3 certified, pursuing a State Engineer degree in Intelligent Networks & Cybersecurity.",
+  },
+  skills: [
+    'JavaScript', 'Python', 'C', 'C++', 'PHP', 'Java', 'Laravel', 'Vue.js', 'Nuxt.js',
+    'React', 'Flutter', 'Node.js', 'MySQL', 'PostgreSQL', 'MongoDB', 'Docker', 'GitLab CI',
+    'Wireshark', 'Cisco',
+  ].map((name) => ({ name, category: 'Skill' })),
+  projects: [
+    { title: 'CI/CD & Supply-Chain Security Hardening', summary: 'Hardened a GitLab CI/CD pipeline & Docker images for a MERN app, measuring attack-surface reduction.' },
+    { title: 'Collaborative Blood Donation Platform', summary: 'Web admin + Flutter donor app with MapBox localization.' },
+    { title: "Children's School-Route Tracking App", summary: 'Real-time school-route tracking for parents (web + mobile).' },
+    { title: 'Legakte — Online Admin Procedures Platform', summary: 'Secure auth, Veriff identity check, Stripe/BCE/BNP payments.' },
+  ],
+  experiences: [
+    { role: 'Vulnerability Research Engineer (Contract)', company: 'AI Model Training Data', current: true },
+    { role: 'Full-Stack Developer (Freelance)', company: 'Legakte' },
+  ],
+}
+
 // Pull the owner's data so the assistant answers from real, grounded facts.
 async function buildContext() {
-  if (!dbReady()) return null
+  if (!dbReady()) return STATIC_CONTEXT
   const [profile, projects, experiences, skills] = await Promise.all([
     Profile.findOne({ singleton: 'profile' }).lean(),
     Project.find({ status: 'published' }).sort({ featured: -1, order: 1 }).lean(),

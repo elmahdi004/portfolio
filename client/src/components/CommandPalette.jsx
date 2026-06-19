@@ -19,15 +19,16 @@ import {
   Copy,
 } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 const SECTIONS = [
-  { id: 'top', label: 'Home', icon: Home },
-  { id: 'about', label: 'About', icon: User },
-  { id: 'skills', label: 'Skills', icon: Cpu },
-  { id: 'projects', label: 'Projects', icon: FolderGit2 },
-  { id: 'experience', label: 'Experience', icon: Route },
-  { id: 'github', label: 'GitHub', icon: Github },
-  { id: 'contact', label: 'Contact', icon: Mail },
+  { id: 'top', key: 'palette.home', icon: Home },
+  { id: 'about', key: 'nav.about', icon: User },
+  { id: 'skills', key: 'nav.skills', icon: Cpu },
+  { id: 'projects', key: 'nav.projects', icon: FolderGit2 },
+  { id: 'experience', key: 'nav.journey', icon: Route },
+  { id: 'github', key: 'nav.github', icon: Github },
+  { id: 'contact', key: 'nav.contact', icon: Mail },
 ]
 
 const EMAIL = 'elmahdibellaziz@gmail.com'
@@ -52,6 +53,7 @@ function Item({ icon: Icon, children, onSelect }) {
 export default function CommandPalette() {
   const [open, setOpen] = useState(false)
   const { isDark, toggle } = useTheme()
+  const { t } = useI18n()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export default function CommandPalette() {
     run(async () => {
       try {
         await navigator.clipboard.writeText(EMAIL)
-        toast.success('Email copied to clipboard!')
+        toast.success(t('palette.copied'))
       } catch {
         toast.error('Could not copy — please copy manually.')
       }
@@ -115,45 +117,47 @@ export default function CommandPalette() {
                 <Sparkles size={16} className="text-primary" />
                 <Command.Input
                   autoFocus
-                  placeholder="Type a command or search…"
+                  placeholder={t('palette.placeholder')}
                   className="w-full bg-transparent py-4 text-sm outline-none placeholder:text-muted"
                 />
                 <kbd className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] text-muted">ESC</kbd>
               </div>
               <Command.List className="max-h-[22rem] overflow-y-auto p-2">
-                <Command.Empty className="py-8 text-center text-sm text-muted">No results found.</Command.Empty>
-                <Command.Group heading="Navigate" className={groupClass}>
+                <Command.Empty className="py-8 text-center text-sm text-muted">
+                  {t('palette.empty')}
+                </Command.Empty>
+                <Command.Group heading={t('palette.navigate')} className={groupClass}>
                   {SECTIONS.map((s) => (
                     <Item key={s.id} icon={s.icon} onSelect={() => goto(s.id)}>
-                      {s.label}
+                      {t(s.key)}
                     </Item>
                   ))}
                 </Command.Group>
-                <Command.Group heading="Actions" className={groupClass}>
+                <Command.Group heading={t('palette.actions')} className={groupClass}>
                   <Item icon={isDark ? Sun : Moon} onSelect={() => run(toggle)}>
-                    Switch to {isDark ? 'light' : 'dark'} mode
+                    {isDark ? t('palette.switchLight') : t('palette.switchDark')}
                   </Item>
                   <Item icon={Sparkles} onSelect={openAI}>
-                    Ask the AI assistant
+                    {t('palette.askAI')}
                   </Item>
                   <Item icon={Copy} onSelect={copyEmail}>
-                    Copy email address
+                    {t('palette.copyEmail')}
                   </Item>
                 </Command.Group>
-                <Command.Group heading="Links" className={groupClass}>
+                <Command.Group heading={t('palette.links')} className={groupClass}>
                   <Item icon={Github} onSelect={() => openLink(GITHUB)}>
-                    GitHub profile
+                    {t('palette.githubProfile')}
                   </Item>
                   <Item icon={Linkedin} onSelect={() => openLink(LINKEDIN)}>
-                    LinkedIn
+                    {t('palette.linkedin')}
                   </Item>
                   <Item icon={Mail} onSelect={() => openLink(`mailto:${EMAIL}`)}>
-                    Send an email
+                    {t('palette.sendEmail')}
                   </Item>
                 </Command.Group>
-                <Command.Group heading="Admin" className={groupClass}>
+                <Command.Group heading={t('palette.admin')} className={groupClass}>
                   <Item icon={Lock} onSelect={() => run(() => navigate('/admin'))}>
-                    Admin dashboard
+                    {t('palette.adminDash')}
                   </Item>
                 </Command.Group>
               </Command.List>

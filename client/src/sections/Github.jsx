@@ -13,6 +13,7 @@ import GradientText from '../components/ui/GradientText.jsx'
 import GlassCard from '../components/ui/GlassCard.jsx'
 import Reveal from '../components/ui/Reveal.jsx'
 import Spinner from '../components/ui/Spinner.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 function StatTile({ icon: Icon, label, value }) {
   return (
@@ -63,6 +64,7 @@ function ContributionHeatmap({ calendar }) {
 }
 
 function GithubContent({ data }) {
+  const { t } = useI18n()
   const { user, totals, languages, topRepos, contributions } = data
   return (
     <>
@@ -110,7 +112,7 @@ function GithubContent({ data }) {
               rel="noreferrer"
               className="btn-ghost mt-auto !py-2.5 self-start"
             >
-              View profile <ExternalLink size={15} />
+              {t('github.viewProfile')} <ExternalLink size={15} />
             </a>
           </GlassCard>
         </Reveal>
@@ -118,15 +120,15 @@ function GithubContent({ data }) {
         {/* stats + languages */}
         <Reveal delay={0.1}>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <StatTile icon={BookMarked} label="Repos" value={totals.repos} />
-            <StatTile icon={Star} label="Stars" value={totals.stars} />
-            <StatTile icon={GitFork} label="Forks" value={totals.forks} />
-            <StatTile icon={Users} label="Followers" value={user.followers} />
+            <StatTile icon={BookMarked} label={t('github.repos')} value={totals.repos} />
+            <StatTile icon={Star} label={t('github.stars')} value={totals.stars} />
+            <StatTile icon={GitFork} label={t('github.forks')} value={totals.forks} />
+            <StatTile icon={Users} label={t('github.followers')} value={user.followers} />
           </div>
 
           {languages?.length > 0 ? (
             <GlassCard className="mt-4 p-5" spotlight={false}>
-              <h3 className="text-sm font-semibold">Top languages</h3>
+              <h3 className="text-sm font-semibold">{t('github.topLanguages')}</h3>
               <div className="mt-4 space-y-3">
                 {languages.slice(0, 6).map((l) => (
                   <div key={l.name}>
@@ -150,7 +152,7 @@ function GithubContent({ data }) {
           ) : (
             <GlassCard className="mt-4 grid flex-1 place-items-center p-6 text-center" spotlight={false}>
               <p className="text-sm text-muted">
-                Fresh public repositories are on the way — building in private for now. ⭐
+                {t('github.comingSoon')}
               </p>
             </GlassCard>
           )}
@@ -196,17 +198,19 @@ function GithubContent({ data }) {
 }
 
 export default function Github() {
+  const { t } = useI18n()
   const { data, isLoading, isError } = useGithub()
   return (
     <section id="github" className="section">
       <SectionHeading
-        eyebrow="Open source"
+        eyebrow={t('github.eyebrow')}
         title={
           <>
-            Live from <GradientText>GitHub</GradientText>
+            {t('github.title1')}
+            <GradientText>{t('github.titleHl')}</GradientText>
           </>
         }
-        subtitle="A real-time snapshot of my public activity, pulled straight from the GitHub API."
+        subtitle={t('github.subtitle')}
       />
       {isLoading && (
         <div className="mt-16 grid place-items-center">
@@ -216,14 +220,14 @@ export default function Github() {
       {isError && (
         <Reveal className="mt-10">
           <GlassCard className="p-8 text-center text-muted" spotlight={false}>
-            Couldn't load live GitHub stats right now.{' '}
+            {t('github.error')}{' '}
             <a
               className="text-primary hover:underline"
               href="https://github.com/elmahdi004"
               target="_blank"
               rel="noreferrer"
             >
-              Visit my profile →
+              {t('github.visitProfile')}
             </a>
           </GlassCard>
         </Reveal>

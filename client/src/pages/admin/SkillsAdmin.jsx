@@ -8,7 +8,7 @@ import GlassCard from '../../components/ui/GlassCard.jsx'
 import { PageHeader, Loading, Empty } from '../../components/admin/ui.jsx'
 import { Text, Select, Toggle, NumberInput, Label } from '../../components/admin/Fields.jsx'
 
-const EMPTY = { name: '', category: 'Languages', level: 80, color: '#8b5cf6', featured: false, order: 0 }
+const EMPTY = { name: '', category: 'Languages', level: 80, color: '#0d9488', icon: '', featured: false, order: 0 }
 const CATEGORIES = ['Languages', 'Frontend', 'Backend', 'DevOps', 'Security', 'Cloud', 'Other']
 
 export default function SkillsAdmin() {
@@ -109,6 +109,12 @@ export default function SkillsAdmin() {
         }
       >
         <Text label="Name" value={form.name} onChange={(v) => set('name', v)} />
+        <Text
+          label="Logo — Simple Icons slug or image URL (optional)"
+          value={form.icon}
+          onChange={(v) => set('icon', v)}
+          placeholder="e.g. docker, react, or https://…"
+        />
         <div className="grid grid-cols-2 gap-3">
           <Select label="Category" value={form.category} onChange={(v) => set('category', v)} options={CATEGORIES} />
           <NumberInput
@@ -125,11 +131,11 @@ export default function SkillsAdmin() {
             <div className="flex items-center gap-2">
               <input
                 type="color"
-                value={form.color || '#8b5cf6'}
+                value={form.color || '#0d9488'}
                 onChange={(e) => set('color', e.target.value)}
                 className="h-10 w-12 shrink-0 cursor-pointer rounded-lg border border-line/70 bg-transparent"
               />
-              <Text value={form.color} onChange={(v) => set('color', v)} placeholder="#8b5cf6" />
+              <Text value={form.color} onChange={(v) => set('color', v)} placeholder="#0d9488" />
             </div>
           </div>
           <Toggle label="Featured" value={form.featured} onChange={(v) => set('featured', v)} />
