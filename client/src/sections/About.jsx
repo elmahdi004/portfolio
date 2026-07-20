@@ -5,23 +5,12 @@ import SectionHeading from '../components/ui/SectionHeading.jsx'
 import GradientText from '../components/ui/GradientText.jsx'
 import GlassCard from '../components/ui/GlassCard.jsx'
 import Reveal from '../components/ui/Reveal.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 const PILLARS = [
-  {
-    icon: ShieldCheck,
-    title: 'Secure by Design',
-    desc: 'Threat-model early, shift security left, and bake controls into every stage of the SDLC.',
-  },
-  {
-    icon: Workflow,
-    title: 'Automated by Default',
-    desc: 'CI/CD pipelines that build, scan, test and ship — repeatable, auditable, fast.',
-  },
-  {
-    icon: Layers,
-    title: 'Full-Stack Delivery',
-    desc: 'From MongoDB schemas to pixel-perfect React UIs, I own the whole product surface.',
-  },
+  { icon: ShieldCheck, titleKey: 'about.pillar1Title', descKey: 'about.pillar1Desc' },
+  { icon: Workflow, titleKey: 'about.pillar2Title', descKey: 'about.pillar2Desc' },
+  { icon: Layers, titleKey: 'about.pillar3Title', descKey: 'about.pillar3Desc' },
 ]
 
 function InfoRow({ icon: Icon, label, accent }) {
@@ -40,6 +29,7 @@ function InfoRow({ icon: Icon, label, accent }) {
 }
 
 export default function About() {
+  const { t } = useI18n()
   const { data } = useProfile()
   const profile = data && data.name ? data : FALLBACK_PROFILE
   const paragraphs = (profile.bio || FALLBACK_PROFILE.bio).split('\n\n')
@@ -47,13 +37,14 @@ export default function About() {
   return (
     <section id="about" className="section">
       <SectionHeading
-        eyebrow="About me"
+        eyebrow={t('about.eyebrow')}
         title={
           <>
-            Engineering at the intersection of <GradientText>speed &amp; security</GradientText>
+            {t('about.title1')}
+            <GradientText>{t('about.titleHl')}</GradientText>
           </>
         }
-        subtitle="A bit about who I am and how I work."
+        subtitle={t('about.subtitle')}
       />
 
       <div className="mt-14 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -67,7 +58,7 @@ export default function About() {
             {PILLARS.map((p) => {
               const Icon = p.icon
               return (
-                <GlassCard key={p.title} className="p-5">
+                <GlassCard key={p.titleKey} className="p-5">
                   <div
                     className="grid h-11 w-11 place-items-center rounded-xl text-white"
                     style={{
@@ -76,8 +67,8 @@ export default function About() {
                   >
                     <Icon size={20} />
                   </div>
-                  <h3 className="mt-4 font-semibold">{p.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted">{p.desc}</p>
+                  <h3 className="mt-4 font-semibold">{t(p.titleKey)}</h3>
+                  <p className="mt-1.5 text-sm text-muted">{t(p.descKey)}</p>
                 </GlassCard>
               )
             })}
@@ -103,11 +94,11 @@ export default function About() {
 
             <div className="mt-6 space-y-3 text-sm">
               {profile.location && <InfoRow icon={MapPin} label={profile.location} />}
-              <InfoRow icon={Briefcase} label={`${profile.yearsExperience || 3}+ years experience`} />
+              <InfoRow icon={Briefcase} label={`${profile.yearsExperience || 3}${t('about.years')}`} />
               <InfoRow
                 icon={Sparkles}
                 accent
-                label={profile.availableForWork ? 'Available for new opportunities' : 'Currently engaged'}
+                label={profile.availableForWork ? t('about.available') : t('about.engaged')}
               />
             </div>
 

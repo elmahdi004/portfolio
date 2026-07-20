@@ -1,4 +1,4 @@
-# El Mahdi Bellaziz — Portfolio (MERN + Aurora)
+<!-- # El Mahdi Bellaziz — Portfolio (MERN + Aurora)
 
 A premium, fully-responsive developer portfolio with an **aurora-glass** design system, dark/light theming, and a complete **admin CMS** — built on the MERN stack.
 
@@ -111,4 +111,4 @@ Serve `client/dist` behind any static host and run the API with `NODE_ENV=produc
 
 ---
 
-Built with 💜 using the MERN stack & Tailwind.
+Built with 💜 using the MERN stack & Tailwind. -->

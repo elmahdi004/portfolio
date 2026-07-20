@@ -11,6 +11,7 @@ const experienceSchema = new mongoose.Schema(
       enum: ['work', 'education', 'certification'],
       default: 'work',
     },
+    period: { type: String, default: '' }, // optional display label, e.g. "2025 — Present"
     startDate: { type: Date },
     endDate: { type: Date }, // null/undefined = present
     current: { type: Boolean, default: false },

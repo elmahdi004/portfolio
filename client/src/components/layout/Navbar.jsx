@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon, Command, ArrowUpRight } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext.jsx'
+import { useI18n } from '../../lib/i18n.jsx'
 import { cn } from '../../lib/cn.js'
+import Logo from '../Logo.jsx'
+import LanguageSwitcher from '../LanguageSwitcher.jsx'
 
 const LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Journey', href: '#experience' },
-  { label: 'GitHub', href: '#github' },
-  { label: 'Contact', href: '#contact' },
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.skills', href: '#skills' },
+  { key: 'nav.projects', href: '#projects' },
+  { key: 'nav.journey', href: '#experience' },
+  { key: 'nav.github', href: '#github' },
+  { key: 'nav.contact', href: '#contact' },
 ]
 
 function ThemeToggle() {
@@ -37,6 +40,7 @@ function ThemeToggle() {
 }
 
 export default function Navbar() {
+  const { t } = useI18n()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -59,12 +63,7 @@ export default function Navbar() {
           )}
         >
           <a href="#top" className="flex items-center gap-2.5">
-            <span
-              className="grid h-9 w-9 place-items-center rounded-xl text-sm font-bold text-white"
-              style={{ backgroundImage: 'linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)))' }}
-            >
-              EB
-            </span>
+            <Logo className="h-9 w-9 transition-transform duration-200 hover:scale-105" />
             <span className="hidden text-sm font-semibold sm:block">
               El&nbsp;Mahdi<span className="text-muted"> · DevSecOps</span>
             </span>
@@ -77,7 +76,7 @@ export default function Navbar() {
                 href={l.href}
                 className="rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:bg-surface/60 hover:text-ink"
               >
-                {l.label}
+                {t(l.key)}
               </a>
             ))}
           </div>
@@ -88,12 +87,13 @@ export default function Navbar() {
               aria-label="Open command palette"
               className="hidden items-center gap-2 rounded-full glass px-3 py-2 text-xs text-muted transition-colors hover:border-primary/50 sm:flex"
             >
-              <Command size={14} /> <span>Search</span>
+              <Command size={14} /> <span>{t('nav.search')}</span>
               <kbd className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-semibold">⌘K</kbd>
             </button>
+            <LanguageSwitcher />
             <ThemeToggle />
             <a href="#contact" className="btn-primary !hidden !px-5 !py-2 text-sm md:!inline-flex">
-              Hire me <ArrowUpRight size={16} />
+              {t('nav.hireMe')} <ArrowUpRight size={16} />
             </a>
             <button
               onClick={() => setOpen(true)}
@@ -116,14 +116,14 @@ export default function Navbar() {
           >
             <div className="absolute inset-0 bg-bg/80 backdrop-blur-xl" onClick={() => setOpen(false)} />
             <motion.div
-              className="absolute right-0 top-0 h-full w-72 glass-strong p-6"
+              className="absolute end-0 top-0 h-full w-72 glass-strong p-6"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-semibold">Menu</span>
+                <span className="font-display font-semibold">{t('nav.menu')}</span>
                 <button
                   onClick={() => setOpen(false)}
                   className="grid h-9 w-9 place-items-center rounded-full glass"
@@ -142,12 +142,12 @@ export default function Navbar() {
                     transition={{ delay: 0.05 * i }}
                     className="rounded-xl px-4 py-3 text-lg font-medium text-muted hover:bg-surface/60 hover:text-ink"
                   >
-                    {l.label}
+                    {t(l.key)}
                   </motion.a>
                 ))}
               </div>
               <a href="#contact" onClick={() => setOpen(false)} className="btn-primary mt-6 w-full">
-                Hire me
+                {t('nav.hireMe')}
               </a>
             </motion.div>
           </motion.div>

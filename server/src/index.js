@@ -77,7 +77,7 @@ app.listen(PORT, () => {
 
 async function boot() {
   let ok = await connectDB(process.env.MONGODB_URI)
-  if (!ok && process.env.NODE_ENV !== 'production') {
+  if (!ok && process.env.NODE_ENV !== 'production' && process.env.USE_MEMORY_DB === 'true') {
     console.log('   ↳ Falling back to an in-memory database for local development…')
     ok = await connectMemoryDB()
   }

@@ -7,6 +7,7 @@ import { cn } from '../lib/cn.js'
 import SectionHeading from '../components/ui/SectionHeading.jsx'
 import GradientText from '../components/ui/GradientText.jsx'
 import GlassCard from '../components/ui/GlassCard.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 const ICONS = { work: Briefcase, education: GraduationCap, certification: Award }
 
@@ -17,6 +18,7 @@ function periodLabel(e) {
 }
 
 function TimelineItem({ e, i }) {
+  const { t } = useI18n()
   const Icon = ICONS[e.type] || Briefcase
   const left = i % 2 === 0
   return (
@@ -42,7 +44,9 @@ function TimelineItem({ e, i }) {
           <div className="flex flex-wrap items-center gap-2">
             <span className="chip !py-0.5 !text-[11px]">{periodLabel(e)}</span>
             {e.current && (
-              <span className="chip !py-0.5 !text-[11px] border-emerald-400/40 text-emerald-400">Now</span>
+              <span className="chip !py-0.5 !text-[11px] border-emerald-400/40 text-emerald-400">
+                {t('experience.now')}
+              </span>
             )}
             <span className="chip !py-0.5 !text-[11px] capitalize">{e.type || 'work'}</span>
           </div>
@@ -78,6 +82,7 @@ function TimelineItem({ e, i }) {
 }
 
 export default function Experience() {
+  const { t } = useI18n()
   const { data } = useExperiences()
   const items = data?.length ? data : FALLBACK_EXPERIENCES
   const ref = useRef(null)
@@ -87,13 +92,14 @@ export default function Experience() {
   return (
     <section id="experience" className="section">
       <SectionHeading
-        eyebrow="My journey"
+        eyebrow={t('experience.eyebrow')}
         title={
           <>
-            Experience &amp; <GradientText>milestones</GradientText>
+            {t('experience.title1')}
+            <GradientText>{t('experience.titleHl')}</GradientText>
           </>
         }
-        subtitle="The path that shaped a security-first, full-stack engineer."
+        subtitle={t('experience.subtitle')}
       />
 
       <div ref={ref} className="relative mx-auto mt-16 max-w-3xl lg:max-w-5xl">

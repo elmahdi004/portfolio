@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 import App from './App.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
+import { I18nProvider } from './lib/i18n.jsx'
 import './index.css'
 
 const queryClient = new QueryClient({
@@ -17,7 +18,8 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
+      <I18nProvider>
+        <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ErrorBoundary>
             <App />
@@ -33,7 +35,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             }}
           />
         </BrowserRouter>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </I18nProvider>
     </ThemeProvider>
   </React.StrictMode>
 )

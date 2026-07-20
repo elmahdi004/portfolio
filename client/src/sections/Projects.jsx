@@ -7,14 +7,15 @@ import { cn } from '../lib/cn.js'
 import SectionHeading from '../components/ui/SectionHeading.jsx'
 import GradientText from '../components/ui/GradientText.jsx'
 import GlassCard from '../components/ui/GlassCard.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 const COVERS = [
-  'linear-gradient(135deg, #7c3aed, #db2777)',
-  'linear-gradient(135deg, #0891b2, #7c3aed)',
-  'linear-gradient(135deg, #e11d48, #f59e0b)',
-  'linear-gradient(135deg, #2563eb, #06b6d4)',
-  'linear-gradient(135deg, #9333ea, #2563eb)',
   'linear-gradient(135deg, #059669, #0891b2)',
+  'linear-gradient(135deg, #0891b2, #4f46e5)',
+  'linear-gradient(135deg, #0d9488, #2563eb)',
+  'linear-gradient(135deg, #2563eb, #06b6d4)',
+  'linear-gradient(135deg, #4f46e5, #0891b2)',
+  'linear-gradient(135deg, #10b981, #0ea5e9)',
 ]
 
 function Cover({ project, index, className }) {
@@ -39,6 +40,7 @@ function Cover({ project, index, className }) {
 }
 
 function ProjectModal({ project, onClose }) {
+  const { t } = useI18n()
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -104,12 +106,12 @@ function ProjectModal({ project, onClose }) {
           <div className="mt-6 flex flex-wrap gap-3">
             {project.links?.github && (
               <a href={project.links.github} target="_blank" rel="noreferrer" className="btn-ghost !py-2.5">
-                <Github size={16} /> Code
+                <Github size={16} /> {t('projects.code')}
               </a>
             )}
             {project.links?.live && (
               <a href={project.links.live} target="_blank" rel="noreferrer" className="btn-primary !py-2.5">
-                <ExternalLink size={16} /> Live demo
+                <ExternalLink size={16} /> {t('projects.liveDemo')}
               </a>
             )}
           </div>
@@ -120,6 +122,7 @@ function ProjectModal({ project, onClose }) {
 }
 
 export default function Projects() {
+  const { t } = useI18n()
   const { data } = useProjects()
   const projects = data?.length ? data : FALLBACK_PROJECTS
   const [filter, setFilter] = useState('All')
@@ -134,13 +137,14 @@ export default function Projects() {
   return (
     <section id="projects" className="section">
       <SectionHeading
-        eyebrow="Selected work"
+        eyebrow={t('projects.eyebrow')}
         title={
           <>
-            Projects I'm <GradientText>proud of</GradientText>
+            {t('projects.title1')}
+            <GradientText>{t('projects.titleHl')}</GradientText>
           </>
         }
-        subtitle="A mix of security engineering, DevOps tooling and full-stack apps. Click any card for details."
+        subtitle={t('projects.subtitle')}
       />
 
       <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -153,7 +157,7 @@ export default function Projects() {
               filter === c ? 'btn-primary !px-4 !py-2' : 'glass text-muted hover:text-ink'
             )}
           >
-            {c}
+            {c === 'All' ? t('projects.all') : c}
           </button>
         ))}
       </div>
