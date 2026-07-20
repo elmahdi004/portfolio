@@ -2,20 +2,20 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a12" />
-    <meta
-      name="description"
-      content="El Mahdi Bellaziz — DevSecOps Engineer & Full-Stack Developer. Building secure, scalable systems."
-    />
-    <meta property="og:title" content="El Mahdi Bellaziz — DevSecOps Engineer" />
-    <meta
-      property="og:description"
-      content="DevSecOps Engineer & Full-Stack Developer. Secure by design."
-    />
-    <meta property="og:type" content="website" />
-    <title>El Mahdi Bellaziz — DevSecOps Engineer</title>
+
+    <!-- Dev-time defaults. At build time `scripts/generate-seo.mjs` replaces the
+         marker below with the full SEO block generated from data/portfolio.json. -->
+    <title>El Mahdi Bellaziz</title>
+    <!--SEO_HEAD-->
+
+    <!-- Icons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Set theme before paint to avoid a flash of the wrong theme -->
     <script>
@@ -40,6 +40,10 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Crawlable fallback, generated from data/portfolio.json at build time. -->
+    <!--SEO_BODY-->
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

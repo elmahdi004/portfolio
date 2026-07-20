@@ -1,0 +1,16 @@
+{
+  "name": "El Mahdi Bellaziz — Cybersecurity & Full-Stack Engineer",
+  "short_name": "Bellaziz",
+  "description": "Portfolio of El Mahdi Bellaziz — vulnerability research, program repair, and secure full-stack web & mobile development.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#0a0a12",
+  "lang": "en",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

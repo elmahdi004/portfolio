@@ -34,7 +34,6 @@ export default function Hero() {
   const tagline = profile.tagline || FALLBACK_PROFILE.tagline
   const typed = useTypewriter(roles)
   // "El Mahdi Bellaziz" -> "El Mahdi" (drop the surname; fall back to full name)
-  const firstName = name.split(' ').slice(0, -1).join(' ') || name
   const socials = profile?.socials || {}
   const email = profile?.email || socials.email
   const stats = profile?.stats || []
@@ -62,7 +61,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.05 }}
             className="mt-6 text-balance text-3xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            {t('hero.greeting')} <GradientText animated>{firstName}</GradientText>.
+            {t('hero.greeting')} <GradientText animated>{name}</GradientText>.
             <br />
             {t('hero.engineer')}{' '}
             <span className="break-words">
