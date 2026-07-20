@@ -7,6 +7,7 @@
 //  • AI assistant   → local keyword responder built from the same data
 
 import {
+  SITE,
   FALLBACK_PROFILE,
   FALLBACK_SKILLS,
   FALLBACK_PROJECTS,
@@ -14,6 +15,15 @@ import {
 } from './fallback.js'
 
 export const IS_STATIC = import.meta.env.VITE_STATIC === 'true'
+
+/** "https://bellaziz.me" → "bellaziz.me" (single-sourced from portfolio.json). */
+const SITE_HOST = (() => {
+  try {
+    return new URL(SITE.url).host
+  } catch {
+    return 'portfolio'
+  }
+})()
 
 export const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME || 'elmahdi004'
 
@@ -89,13 +99,23 @@ export async function submitContactStatic({ name, email, subject, message }) {
     const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      // Deliverability notes (Web3Forms has no custom SMTP, so the From address
+      // is always theirs — we make everything else look as legitimate as
+      // possible, and you whitelist the sender once in Gmail):
+      //  • from_name  → your domain instead of the default generic "Notifications"
+      //  • replyto    → the visitor, so hitting Reply in Gmail just works
+      //  • subject    → specific + always contains the domain, so it's easy to
+      //                 write a Gmail filter on it
       body: JSON.stringify({
         access_key: key,
         name,
         email,
-        subject: subject || `Portfolio message from ${name}`,
+        replyto: email,
+        from_name: SITE_HOST,
+        subject: subject
+          ? `${subject} — via ${SITE_HOST}`
+          : `New message from ${name} — via ${SITE_HOST}`,
         message,
-        from_name: 'Portfolio',
       }),
     })
     const data = await res.json().catch(() => ({}))
