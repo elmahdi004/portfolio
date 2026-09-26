@@ -1,9 +1,9 @@
 {
   "site": {
     "url": "https://bellaziz.me",
-    "title": "El Mahdi Bellaziz — Cybersecurity & Full-Stack Engineer",
-    "description": "El Mahdi Bellaziz — Cybersecurity & Full-Stack Engineer based in Safi, Morocco. Vulnerability research, program repair, and secure web & mobile development with Laravel, Vue, React and Flutter. CCNA 1–3 certified.",
-    "shortDescription": "Vulnerability research, program repair, and secure full-stack web & mobile development. Based in Safi, Morocco.",
+    "title": "El Mahdi Bellaziz — Software & DevSecOps Engineer",
+    "description": "El Mahdi Bellaziz — Software & DevSecOps Engineer based in Safi, Morocco. Secure full-stack web development with Laravel, Vue.js and Nuxt.js, and DevSecOps pipelines with Docker, Kubernetes, ArgoCD and AWS. Cisco DevNet Associate.",
+    "shortDescription": "Secure full-stack web development and DevSecOps pipelines. Based in Safi, Morocco.",
     "ogImage": "/og-image.png",
     "locale": "en_US",
     "altLocales": ["fr_FR", "ar_MA"],
@@ -11,15 +11,18 @@
     "keywords": [
       "El Mahdi Bellaziz",
       "Bellaziz El Mahdi",
-      "cybersecurity engineer",
-      "vulnerability research",
+      "DevSecOps engineer",
       "full-stack developer",
-      "DevSecOps",
+      "cybersecurity engineer",
+      "CI/CD security",
       "Morocco",
       "Safi",
       "Laravel",
-      "React",
-      "Flutter"
+      "Vue.js",
+      "Nuxt.js",
+      "Kubernetes",
+      "ArgoCD",
+      "AWS"
     ]
   },
 
@@ -28,15 +31,13 @@
     "alternateNames": ["Bellaziz El Mahdi", "El Mahdi BELLAZIZ", "Elmahdi Bellaziz"],
     "givenName": "El Mahdi",
     "familyName": "Bellaziz",
-    "title": "Cybersecurity & Full-Stack Engineer",
+    "title": "Software & DevSecOps Engineer",
     "roles": [
-      "Vulnerability Research Engineer",
-      "Full-Stack Developer",
-      "Cybersecurity Engineering Student",
-      "CCNA 1–3 Certified"
+      "DevSecOps Engineer",
+      "Full-Stack Developer"
     ],
-    "tagline": "I find and fix vulnerabilities — and build secure, full-stack web & mobile apps end to end.",
-    "bio": "I'm a cybersecurity engineering student and vulnerability-research engineer based in Safi, Morocco. On contract, I generate code repositories seeded with OSS-fuzz-style vulnerabilities and author the correct, validated patches used to train and evaluate frontier AI code-repair models — root-cause analysis, program repair, and differential / fuzz-based test oracles in C, C++, Python and Assembly.\n\nAlongside security research, I build full-stack web and mobile applications end to end with Laravel, Vue / Nuxt, React and Flutter — from secure authentication and payment flows to real-time tracking systems. CCNA 1–3 certified and currently pursuing a State Engineer degree in Intelligent Networks & Cybersecurity.",
+    "tagline": "I build secure, scalable full-stack applications and design DevSecOps pipelines that catch vulnerabilities before they ship.",
+    "bio": "I'm a Full-Stack Developer based in Safi, Morocco, specializing in DevSecOps, cloud security, and Infrastructure as Code. I'm currently pursuing a State Engineer degree in Intelligent Networks & Cybersecurity at ENSA Khouribga.\n\n I have hands-on experience building secure CI/CD pipelines, implementing DevSecOps security tools, Kubernetes/GitOps deployments, and security automation with Python and AI. As a freelance developer, I also build secure web applications and business automation solutions using Laravel, Vue.js, and Nuxt.js, with experience integrating payment, identity verification, and business APIs.",
     "location": "Safi, Morocco",
     "addressLocality": "Safi",
     "addressCountry": "MA",
@@ -47,69 +48,111 @@
     "yearsExperience": 3,
     "socials": {
       "github": "https://github.com/elmahdi004",
-      "linkedin": "https://www.linkedin.com/in/elmahdibellaziz",
-      "email": "elmahdibellaziz@gmail.com"
+      "linkedin": "https://linkedin.com/in/el-mahdi-b-a81ba5253",
+      "email": "elmahdibellaziz@gmail.com",
+      "website": "https://bellaziz.me"
     },
     "stats": [
       { "label": "Years Building", "value": "3+" },
-      { "label": "Projects Delivered", "value": "8+" },
-      { "label": "CCNA Certifications", "value": "3" },
+      { "label": "Projects Delivered", "value": "9+" },
+      { "label": "Certifications", "value": "7" },
       { "label": "Spoken Languages", "value": "3" }
     ]
   },
 
+  "languages": [
+    { "name": "Arabic", "level": "C2" },
+    { "name": "French", "level": "B2" },
+    { "name": "English", "level": "B2" }
+  ],
+
   "skills": [
-    { "name": "JavaScript", "category": "Languages", "icon": "javascript", "color": "#f7df1e" },
-    { "name": "Python", "category": "Languages", "icon": "python", "color": "#3776ab" },
-    { "name": "C", "category": "Languages", "icon": "c", "color": "#a8b9cc" },
-    { "name": "C++", "category": "Languages", "icon": "cplusplus", "color": "#00599c" },
-    { "name": "PHP", "category": "Languages", "icon": "php", "color": "#777bb4" },
-    { "name": "Java", "category": "Languages", "icon": "openjdk", "color": "#f89820" },
+    { "name": "JavaScript", "category": "Programming Languages", "icon": "javascript", "color": "#f7df1e" },
+    { "name": "PHP", "category": "Programming Languages", "icon": "php", "color": "#777bb4" },
+    { "name": "Python", "category": "Programming Languages", "icon": "python", "color": "#3776ab" },
+    { "name": "Java", "category": "Programming Languages", "icon": "openjdk", "color": "#f89820" },
+    { "name": "C", "category": "Programming Languages", "icon": "c", "color": "#a8b9cc" },
+    { "name": "HTML", "category": "Programming Languages", "icon": "html5", "color": "#e34f26" },
+    { "name": "CSS", "category": "Programming Languages", "icon": "css3", "color": "#1572b6" },
+    { "name": "Assembly", "category": "Programming Languages", "icon": "assembly", "color": "#6b7280" },
 
-    { "name": "Vue.js", "category": "Frontend & Mobile", "icon": "vuedotjs", "color": "#42b883" },
-    { "name": "Nuxt.js", "category": "Frontend & Mobile", "icon": "nuxtdotjs", "color": "#00dc82" },
-    { "name": "React", "category": "Frontend & Mobile", "icon": "react", "color": "#61dafb" },
-    { "name": "Tailwind CSS", "category": "Frontend & Mobile", "icon": "tailwindcss", "color": "#38bdf8" },
-    { "name": "Bootstrap", "category": "Frontend & Mobile", "icon": "bootstrap", "color": "#7952b3" },
-    { "name": "Flutter", "category": "Frontend & Mobile", "icon": "flutter", "color": "#02569b" },
-
-    { "name": "Laravel", "category": "Backend", "icon": "laravel", "color": "#ff2d20" },
-    { "name": "Node.js", "category": "Backend", "icon": "nodedotjs", "color": "#5fa04e" },
-    { "name": "Express", "category": "Backend", "icon": "express", "color": "#9ca3af" },
-    { "name": "Spring Boot", "category": "Backend", "icon": "springboot", "color": "#6db33f" },
+    { "name": "Laravel", "category": "Frameworks", "icon": "laravel", "color": "#ff2d20" },
+    { "name": "Vue.js", "category": "Frameworks", "icon": "vuedotjs", "color": "#42b883" },
+    { "name": "Nuxt.js", "category": "Frameworks", "icon": "nuxtdotjs", "color": "#00dc82" },
+    { "name": "Flutter", "category": "Frameworks", "icon": "flutter", "color": "#02569b" },
+    { "name": "Express.js", "category": "Frameworks", "icon": "express", "color": "#9ca3af" },
+    { "name": "Spring Boot", "category": "Frameworks", "icon": "springboot", "color": "#6db33f" },
+    { "name": "JEE", "category": "Frameworks", "icon": "openjdk", "color": "#f89820" },
+    { "name": "Bootstrap", "category": "Frameworks", "icon": "bootstrap", "color": "#7952b3" },
+    { "name": "Tailwind CSS", "category": "Frameworks", "icon": "tailwindcss", "color": "#38bdf8" },
 
     { "name": "MySQL", "category": "Databases", "icon": "mysql", "color": "#4479a1" },
     { "name": "PostgreSQL", "category": "Databases", "icon": "postgresql", "color": "#4169e1" },
     { "name": "MongoDB", "category": "Databases", "icon": "mongodb", "color": "#47a248" },
+    { "name": "HBase", "category": "Databases", "icon": "apachehbase", "color": "#2c2e35" },
 
     { "name": "Docker", "category": "DevOps & Cloud", "icon": "docker", "color": "#2496ed" },
+    { "name": "Kubernetes", "category": "DevOps & Cloud", "icon": "kubernetes", "color": "#326ce5" },
+    { "name": "ArgoCD (GitOps)", "category": "DevOps & Cloud", "icon": "argo", "color": "#ef7b4d" },
+    { "name": "AWS", "category": "DevOps & Cloud", "icon": "amazonaws", "color": "#ff9900" },
+    { "name": "Ansible", "category": "DevOps & Cloud", "icon": "ansible", "color": "#ee0000" },
+    { "name": "Grafana", "category": "DevOps & Cloud", "icon": "grafana", "color": "#f46800" },
     { "name": "GitLab CI", "category": "DevOps & Cloud", "icon": "gitlab", "color": "#fc6d26" },
-    { "name": "GitHub Actions", "category": "DevOps & Cloud", "icon": "githubactions", "color": "#2088ff" },
-    { "name": "Git", "category": "DevOps & Cloud", "icon": "git", "color": "#f05032" },
     { "name": "Linux", "category": "DevOps & Cloud", "icon": "linux", "color": "#fcc624" },
 
-    { "name": "Wireshark", "category": "Security & Tools", "icon": "wireshark", "color": "#1679a7" },
-    { "name": "Cisco", "category": "Security & Tools", "icon": "cisco", "color": "#1ba0d7" },
-    { "name": "Postman", "category": "Security & Tools", "icon": "postman", "color": "#ff6c37" },
-    { "name": "pytest", "category": "Security & Tools", "icon": "pytest", "color": "#0a9edc" },
-    { "name": "Figma", "category": "Security & Tools", "icon": "figma", "color": "#f24e1e" }
+    { "name": "Gitleaks", "category": "Application Security", "icon": "gitleaks", "color": "#e11d48" },
+    { "name": "Trivy", "category": "Application Security", "icon": "trivy", "color": "#1904da" },
+    { "name": "Semgrep", "category": "Application Security", "icon": "semgrep", "color": "#0b5394" },
+    { "name": "Checkov", "category": "Application Security", "icon": "checkov", "color": "#6c47ff" },
+    { "name": "Syft (SBOM)", "category": "Application Security", "icon": "syft", "color": "#4b5563" },
+    { "name": "Cosign", "category": "Application Security", "icon": "sigstore", "color": "#4b5563" },
+    { "name": "Wireshark", "category": "Application Security", "icon": "wireshark", "color": "#1679a7" },
+
+    { "name": "Git", "category": "Tools", "icon": "git", "color": "#f05032" },
+    { "name": "GitHub", "category": "Tools", "icon": "github", "color": "#181717" },
+    { "name": "Postman", "category": "Tools", "icon": "postman", "color": "#ff6c37" },
+    { "name": "Figma", "category": "Tools", "icon": "figma", "color": "#f24e1e" },
+    { "name": "Cisco", "category": "Tools", "icon": "cisco", "color": "#1ba0d7" },
+    { "name": "Mapbox", "category": "Tools", "icon": "mapbox", "color": "#3b82f6" },
+
+    { "name": "UML", "category": "Analysis & Methodology", "icon": "uml", "color": "#8b5cf6" },
+    { "name": "Merise", "category": "Analysis & Methodology", "icon": "merise", "color": "#8b5cf6" },
+    { "name": "Scrum", "category": "Analysis & Methodology", "icon": "scrumalliance", "color": "#009fda" },
+
+    { "name": "WordPress", "category": "CMS", "icon": "wordpress", "color": "#21759b" },
+    { "name": "PrestaShop", "category": "CMS", "icon": "prestashop", "color": "#df0067" }
   ],
 
   "experiences": [
     {
-      "role": "Vulnerability Research Engineer (Contract)",
-      "company": "AI Model Training Data",
+      "role": "DevSecOps Engineer (Internship)",
+      "company": "Legakte",
+      "location": "Remote",
+      "type": "work",
+      "period": "Jul 2026 — Sep 2026",
+      "description": "Designed a secure CI/CD pipeline on GitLab CI (Oracle ARM runner) with automated code analysis, IaC checks, and signed SBOM generation, plus an ASPM platform with AI-assisted vulnerability triage.",
+      "highlights": [
+        "Designed a secure CI/CD pipeline on GitLab CI (Oracle ARM runner) with code analysis (Gitleaks, Trivy, Semgrep), IaC checks (Checkov), and signed SBOM generation (Syft, Cosign)",
+        "Built an ASPM platform in Python to centralize and prioritize security findings using the FIRST/CVSS framework",
+        "Implemented an AI triage layer (Python agent + local LLM Ollama Qwen2.5 7B) to classify vulnerabilities (P1–P4) and cut false positives, with real-time Slack alerts",
+        "Deployed a security gate blocking critical vulnerabilities, with GitOps sync (ArgoCD) to Kubernetes and DORA metrics tracking via Grafana"
+      ],
+      "tags": ["GitLab CI", "Gitleaks", "Trivy", "Semgrep", "Checkov", "Syft", "Cosign", "ArgoCD", "Kubernetes", "Grafana", "Python"]
+    },
+    {
+      "role": "Full-Stack Developer (Freelance)",
+      "company": "Upwork",
       "location": "Remote",
       "type": "work",
       "current": true,
-      "period": "2025 — Present",
-      "description": "Generate code repositories containing deliberately injected, OSS-fuzz-style vulnerabilities together with correct, ground-truth patches — used to train and evaluate frontier AI code-repair models.",
+      "period": "2024 — Present",
+      "description": "Built complete web applications for international clients based in Europe: online administrative procedure management and business process automation, with secure authentication and electronic invoicing.",
       "highlights": [
-        "Author adversarial test suites and differential / fuzz-based oracles that separate correct patches from plausible-but-wrong fixes",
-        "Validate against reference implementations over tens of thousands of cases; confirm every injected bug is independently detectable and necessary (leave-one-out)",
-        "Work across C, C++, Python and low-level targets — memory-dump recovery, VM crackmes, binary / telemetry decoders"
+        "Secure authentication, personalized dashboards, and electronic invoicing compliant with the PEPPOL standard",
+        "Integrated third-party APIs (payment, identity verification, business registries) with Laravel, Vue.js, and Nuxt.js",
+        "Deployed and maintained production applications for clients based in Europe"
       ],
-      "tags": ["C", "C++", "Python", "Assembly", "Vulnerability Research", "Program Repair"]
+      "tags": ["Laravel", "Vue.js", "Nuxt.js", "PEPPOL", "API Integration"]
     },
     {
       "role": "State Engineer — Intelligent Networks & Cybersecurity",
@@ -117,40 +160,13 @@
       "location": "Khouribga, Morocco",
       "type": "education",
       "period": "2025 — 2027 (expected)",
-      "description": "National School of Applied Sciences. Focus on cybersecurity, information security, intelligent & smart networks, cloud and IoT.",
+      "description": "National School of Applied Sciences. Relevant coursework: Intelligent Networks, Cybersecurity, Information Security, IoT, Cloud.",
       "highlights": [
-        "Cybersecurity & information security",
-        "Intelligent & smart networks",
-        "Cloud and IoT"
+        "Intelligent Networks & Cybersecurity",
+        "Information Security",
+        "IoT & Cloud"
       ],
       "tags": ["Cybersecurity", "Networks", "Cloud", "IoT"]
-    },
-    {
-      "role": "Full-Stack Developer (Freelance)",
-      "company": "Legakte",
-      "location": "Remote",
-      "type": "work",
-      "period": "Feb 2025 — Jul 2025",
-      "description": "Built a platform to manage administrative procedures online, with secure authentication, identity verification and bank / payment-API integrations.",
-      "highlights": [
-        "Implemented secure auth, multi-step forms, a personalized dashboard and online credit purchases",
-        "Integrated Stripe, BCE & BNP bank APIs plus Veriff identity verification",
-        "Hardened payment and credit-purchase flows against common web vulnerabilities"
-      ],
-      "tags": ["Laravel", "Vue.js", "Stripe", "Veriff", "Security"]
-    },
-    {
-      "role": "Bachelor — Information Systems & Network Engineering",
-      "company": "Higher School of Technology (EST), Safi",
-      "type": "education",
-      "period": "2024 — 2025",
-      "description": "Key modules: Cybersecurity, Advanced Network Security, Advanced Programming (J2EE), Advanced Databases, Business Intelligence & Artificial Intelligence.",
-      "highlights": [
-        "Advanced Network Security",
-        "Advanced Programming (J2EE)",
-        "Business Intelligence & AI"
-      ],
-      "tags": ["Cybersecurity", "J2EE", "Databases", "AI"]
     },
     {
       "role": "Full-Stack Web Developer (Intern)",
@@ -158,38 +174,25 @@
       "location": "Safi, Morocco",
       "type": "work",
       "period": "Apr 2024 — Jun 2024",
-      "description": "Designed and developed a corporate training-management web application with role-based access and REST API integration.",
+      "description": "Designed and developed a corporate training-management web application from end to end with role-based access and REST API integration.",
       "highlights": [
-        "Clients could browse training sessions and submit registration requests",
-        "Backend with Laravel / Inertia.js, frontend with Vue.js"
+        "Enabled clients to browse training sessions and submit registration requests",
+        "Built the backend with Laravel / Inertia.js and the frontend with Vue.js"
       ],
       "tags": ["Laravel", "Inertia.js", "Vue.js", "REST API"]
     },
     {
-      "role": "Cisco CCNA 1, 2 & 3",
-      "company": "Cisco Networking Academy",
-      "type": "certification",
-      "period": "2023 — 2025",
-      "description": "Introduction to Networks (2023), Switching, Routing & Wireless Essentials (2024), and Advanced Network Security (2025).",
-      "highlights": [
-        "CCNA 1 — Introduction to Networks",
-        "CCNA 2 — Switching, Routing & Wireless Essentials",
-        "CCNA 3 — Advanced Network Security"
-      ],
-      "tags": ["Cisco", "Networking", "Security"]
-    },
-    {
-      "role": "University Diploma of Technology (DUT) — Computer Engineering",
+      "role": "Bachelor — Information Systems & Network Engineering",
       "company": "Higher School of Technology (EST), Safi",
       "type": "education",
-      "period": "2022 — 2024",
-      "description": "Key modules: Algorithms, C Programming, Computer Networks, Operating Systems, Object-Oriented Programming, UML and Project Management.",
+      "period": "2024 — 2025",
+      "description": "Relevant coursework: Advanced Object-Oriented Programming, Advanced Databases, Cybersecurity, Advanced Network Security, Artificial Intelligence.",
       "highlights": [
-        "Algorithms & C programming",
-        "Operating systems & networks",
-        "OOP & UML modeling"
+        "Advanced Network Security",
+        "Advanced OOP & Databases",
+        "Business Intelligence & AI"
       ],
-      "tags": ["C", "Algorithms", "Networks", "OOP"]
+      "tags": ["Cybersecurity", "Databases", "AI", "OOP"]
     },
     {
       "role": "Full-Stack Web Developer (Intern)",
@@ -197,76 +200,105 @@
       "location": "Safi, Morocco",
       "type": "work",
       "period": "Jul 2023 — Sep 2023",
-      "description": "Built an online examination system with authentication and access control, plus a static video-games website.",
+      "description": "Designed and developed an online examination system using Laravel/PHP, JavaScript, HTML, CSS/Bootstrap, and MySQL, alongside a static video-games website.",
       "highlights": [
-        "Online exam system with Laravel / PHP, JavaScript & MySQL",
-        "Static games site with HTML, CSS & Bootstrap"
+        "Built an online exam system with authentication and access control",
+        "Created a static games website using HTML, CSS, and Bootstrap"
       ],
       "tags": ["Laravel", "PHP", "MySQL", "Bootstrap"]
+    },
+    {
+      "role": "University Diploma of Technology (DUT) — Computer Engineering",
+      "company": "Higher School of Technology (EST), Safi",
+      "type": "education",
+      "period": "2022 — 2024",
+      "description": "Core modules: Algorithms, C Programming, Computer Networks, Operating Systems, Object-Oriented Programming.",
+      "highlights": [
+        "Algorithms & C programming",
+        "Operating systems & networks",
+        "OOP"
+      ],
+      "tags": ["C", "Algorithms", "Networks", "OOP"]
+    },
+    {
+      "role": "Baccalaureate in Physics and Chemistry",
+      "company": "Ibn Khaldoun High School, Safi",
+      "type": "education",
+      "period": "2022",
+      "description": "High school diploma, Physics and Chemistry track.",
+      "highlights": [],
+      "tags": ["Physics", "Chemistry"]
     }
   ],
 
   "projects": [
     {
-      "title": "CI/CD & Supply-Chain Security Hardening",
-      "summary": "Hardened a GitLab CI/CD pipeline and Docker images for a MERN e-commerce app — vulnerable baseline → real attacks → measured attack-surface reduction.",
-      "description": "Built a deliberately vulnerable baseline, executed real attack scenarios (leaked / committed secrets, insecure pipeline steps), then hardened the GitLab CI/CD pipeline and Docker images and measured the resulting reduction in attack surface.",
-      "tags": ["GitLab CI", "Docker", "Node.js", "React", "MongoDB"],
+      "title": "Automating Security — A DevSecOps Pipeline with Jenkins, ArgoCD and Amazon EKS",
+      "summary": "A secure CI/CD pipeline with Jenkins and automated security analysis, continuously deployed via ArgoCD (GitOps) to a Kubernetes cluster on Amazon EKS.",
+      "description": "Designed a secure CI/CD pipeline with Jenkins, integrating automated security analysis steps before every deployment. Continuous deployment via ArgoCD (GitOps) to a Kubernetes cluster managed on Amazon EKS, applying DevSecOps best practices: vulnerability scanning, secrets management, and access control within the pipeline.",
+      "tags": ["Jenkins", "ArgoCD", "Kubernetes", "Amazon EKS", "DevSecOps"],
       "category": "Security",
       "period": "2026",
       "highlights": [
-        "Vulnerable → attacks → hardened → measured methodology",
-        "Secret detection & committed-secret remediation",
-        "Container and pipeline hardening with measured impact"
+        "Automated security analysis before every deployment",
+        "GitOps continuous deployment with ArgoCD to Amazon EKS",
+        "Vulnerability scanning, secrets management, and access control"
+      ],
+      "links": { "github": "https://github.com/elmahdi004" },
+      "featured": true
+    },
+    {
+      "title": "ASPM Security Findings Platform",
+      "summary": "A Python ASPM platform built during a DevSecOps internship at Legakte to centralize, prioritize, and triage security findings with AI assistance.",
+      "description": "Built an ASPM platform in Python to centralize and prioritize security findings using the FIRST/CVSS framework. Implemented an AI triage layer (Python agent + local LLM Ollama Qwen2.5 7B) to classify vulnerabilities (P1–P4) and cut false positives, with real-time Slack alerts, a security gate blocking critical vulnerabilities, GitOps sync (ArgoCD) to Kubernetes, and DORA metrics tracking via Grafana.",
+      "tags": ["Python", "ASPM", "CVSS", "Ollama", "ArgoCD", "Kubernetes", "Grafana"],
+      "category": "Security",
+      "period": "2026",
+      "highlights": [
+        "FIRST/CVSS-based prioritization of security findings",
+        "AI triage layer with a local LLM to classify vulnerabilities and cut false positives",
+        "Security gate + GitOps sync to Kubernetes with DORA metrics in Grafana"
       ],
       "links": { "github": "https://github.com/elmahdi004" },
       "featured": true
     },
     {
       "title": "Collaborative Blood Donation Platform",
-      "summary": "A web admin + Flutter donor app for managing blood-donation campaigns, with center localization and donor–admin workflows.",
-      "description": "Bachelor's final project: a web application for administration and a Flutter mobile app for donors. Features donation-campaign management, center localization via MapBox, and donor–administration interaction.",
+      "summary": "A web admin panel and Flutter donor app for managing blood-donation campaigns, center localization, and donor–admin workflows.",
+      "description": "Bachelor's final project: a web application for administration and a Flutter mobile app for donors. It includes donation-campaign management, center localization through Mapbox, and donor–administration interaction.",
       "tags": ["Laravel", "Nuxt.js", "Flutter", "Tailwind CSS", "MySQL", "MapBox"],
       "category": "Mobile",
       "period": "2025",
-      "highlights": [
-        "Donation-campaign management",
-        "Center localization with MapBox",
-        "Web admin + cross-platform mobile app"
-      ],
+      "highlights": ["Donation campaign management", "Center localization with Mapbox", "Web admin + cross-platform mobile app"],
       "links": { "github": "https://github.com/elmahdi004" },
       "featured": true
     },
     {
-      "title": "Children’s School-Route Tracking App",
-      "summary": "Real-time tracking that lets parents follow their children’s school routes, with a web admin panel and a mobile app.",
-      "description": "DUT final project: a system that lets parents track their children’s school routes in real time, with a web admin panel and a Flutter mobile application for parents.",
+      "title": "Children's School-Route Tracking App",
+      "summary": "A real-time tracking system letting parents follow their children's school routes via a web admin panel and a mobile application.",
+      "description": "DUT final project: a real-time school route tracking system for parents, consisting of a web admin panel and a mobile application. Integrated MapBox for live location tracking and built with Laravel, Vue.js, Flutter, and Tailwind CSS.",
       "tags": ["Laravel", "Vue.js", "Flutter", "MapBox", "Tailwind CSS"],
       "category": "Mobile",
       "period": "2024",
       "highlights": ["Real-time route tracking", "Web admin panel", "Mobile app for parents"],
       "links": { "github": "https://github.com/elmahdi004" },
-      "featured": true
+      "featured": false
     },
     {
-      "title": "Legakte — Online Admin Procedures Platform",
-      "summary": "A platform to manage administrative procedures online — secure auth, identity verification and bank / payment-API integrations.",
-      "description": "Freelance project: a web app to manage administrative procedures online — secure authentication, multi-step forms, a personalized dashboard, online credit purchases, identity verification (Veriff) and bank / payment APIs (Stripe, BCE, BNP).",
-      "tags": ["Laravel", "Vue.js", "Stripe", "Veriff"],
+      "title": "International Freelance Web Applications",
+      "summary": "Full-stack web applications for international (Europe-based) clients on Upwork: administrative procedure management, business process automation, and PEPPOL-compliant invoicing.",
+      "description": "Built complete web applications for international clients based in Europe: online administrative procedure management and business process automation. Implemented secure authentication, personalized dashboards, and electronic invoicing compliant with the PEPPOL standard, plus integrations with payment, identity-verification, and business-registry APIs using Laravel, Vue.js, and Nuxt.js.",
+      "tags": ["Laravel", "Vue.js", "Nuxt.js", "PEPPOL", "API Integration"],
       "category": "Full-Stack",
-      "period": "2025",
-      "highlights": [
-        "Secure authentication & multi-step forms",
-        "Stripe / BCE / BNP payment integrations",
-        "Veriff identity verification"
-      ],
+      "period": "2024 — Present",
+      "highlights": ["Secure authentication & personalized dashboards", "PEPPOL-compliant electronic invoicing", "Payment, identity-verification & business-registry API integrations"],
       "links": { "github": "https://github.com/elmahdi004" },
       "featured": false
     },
     {
       "title": "Corporate Training Management",
-      "summary": "A training-management web app where clients browse sessions and submit registration requests, with role-based access.",
-      "description": "Internship project at Data FC: a corporate training-management application — clients view available training sessions and submit registration requests. Built with Laravel / Inertia.js and Vue.js with REST API integration.",
+      "summary": "A training-management web app where clients browse sessions and submit registration requests with role-based access.",
+      "description": "Internship project at Data FC: a corporate training-management application where clients can view sessions and submit registration requests. Built with Laravel / Inertia.js and Vue.js, with REST API integration.",
       "tags": ["Laravel", "Inertia.js", "Vue.js", "REST API"],
       "category": "Full-Stack",
       "period": "2024",
@@ -277,7 +309,7 @@
     {
       "title": "Online Examination System",
       "summary": "An online exam platform with authentication and access control, built during an internship at Devosoft.",
-      "description": "Internship project at Devosoft: an online examination system with authentication and access control, built with Laravel / PHP, JavaScript and MySQL.",
+      "description": "Internship project at Devosoft: an online examination system with authentication and access control, built with Laravel / PHP, JavaScript, and MySQL.",
       "tags": ["Laravel", "PHP", "JavaScript", "MySQL"],
       "category": "Full-Stack",
       "period": "2023",
